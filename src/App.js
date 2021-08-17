@@ -31,7 +31,7 @@ function App() {
   const runApp = () => {
     const idToken = liff.getIDToken();
     setIdToken(idToken);
-    this.idToken = idToken;
+    
     liff.getProfile().then(profile => {
       console.log(profile);
       setDisplayName(profile.displayName);

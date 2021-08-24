@@ -40,7 +40,7 @@ const Main = () => {
     const scanQr = () => {
         const result = liff.scanCode();
         setName(result);
-        console.log(result);
+        console.log('scan',result);
     }
 
 
@@ -59,7 +59,7 @@ const Main = () => {
                 {Name}:{displayName}
             </div>
 
-            <Request onclick={scanQr} name={Name}/>
+            <Request onclick={scanQr()} name={Name}/>
 
 
             <div style={{ flex: 1 }}>

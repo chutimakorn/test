@@ -59,7 +59,7 @@ const Main = () => {
                 {Name}:{displayName}
             </div>
 
-            <Request onclick={scanQr()} name={Name}/>
+            <Request onclick={scanQr} name={Name}/>
 
 
             <div style={{ flex: 1 }}>

@@ -40,6 +40,7 @@ const Main = () => {
     const scanQr = () => {
         const result = liff.scanCode();
         setName(result);
+        console.log(result);
     }
 
 

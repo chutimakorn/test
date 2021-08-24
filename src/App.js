@@ -2,6 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import liff from '@line/liff';
 import React,{ useState,useEffect } from 'react'
+import { createStore } from 'redux'
+import { routeReducer } from './Redux/Reducers/routeReducer'
+import Main from './Screens/Main'
+
+
+
+// const store = createStore(
+//   routeReducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// )
 
 function App() {
   const [pictureUrl, setPictureUrl] = useState(logo);
@@ -42,27 +52,29 @@ function App() {
     }).catch(err => console.error(err));
   }
 
-  useEffect(() => {
+  // useEffect(() => {
 
     
-    initLine();
-  }, []);
+  //   initLine();
+  // }, []);
 
   return (
 
-    <div className="App">
-      <header className="App-header">
-      <h1>React with LINE Login</h1>
-      <hr/>
-        <img src={pictureUrl} width="300px" height="300px" />
-        <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>id token: </b> {idToken}</p>
-        <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>display name: </b> {displayName}</p>
-        <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>status message: </b> {statusMessage}</p>
-        <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>user id: </b> {userId}</p>
-        <button onClick={() => logout()} style={{width: "50%",height: 30}}>Logout</button>
+
+    <Main/>
+    // <div className="App">
+    //   <header className="App-header">
+    //   <h1>React with LINE Login</h1>
+    //   <hr/>
+    //     <img src={pictureUrl} width="300px" height="300px" />
+    //     <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>id token: </b> {idToken}</p>
+    //     <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>display name: </b> {displayName}</p>
+    //     <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>status message: </b> {statusMessage}</p>
+    //     <p style={{ textAlign: "left", marginLeft: "20%", marginRight: "20%" }}><b>user id: </b> {userId}</p>
+    //     <button onClick={() => logout()} style={{width: "50%",height: 30}}>Logout</button>
         
-      </header>
-    </div>
+    //   </header>
+    // </div>
   );
 }
 

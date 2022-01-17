@@ -95,10 +95,10 @@ const Main = () => {
             console.log(profile);
             setDisplayName(profile.displayName);
 
-            setUser({
+            dispatch(setUser({
                 lineID:profile.userId,
                 lineToken:idToken
-            });
+            }));
             
 
         }).catch(err => console.error(err));
@@ -167,7 +167,7 @@ const Main = () => {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', flex: 1 }}>
 
             <div style={{ flex: 1, backgroundColor: '#e9ecef' }}>
-                {Name}:{displayName}
+            <img src={displayName}/>:{displayName}
             </div>
             <div style={{ textAlign: 'center', margin: 20, marginBottom: 5, flex: 20, flexDirection: 'column', display: 'flex' }}>
                 {/* <Request /> */}

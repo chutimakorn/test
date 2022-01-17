@@ -93,7 +93,7 @@ const Main = () => {
 
         liff.getProfile().then(profile => {
             console.log(profile);
-            setDisplayName(profile.displayName);
+            setDisplayName(profile.pictureUrl);
 
             dispatch(setUser({
                 lineID:profile.userId,

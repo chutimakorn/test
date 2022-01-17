@@ -21,7 +21,7 @@ const Main = () => {
 
     const [idToken, setIdToken] = useState("");
     const [displayName, setDisplayName] = useState("");
-    const [Name, setName] = useState("");
+    const [name, setName] = useState("");
     const [showMenu, setShowMenu] = useState(false);
 
     const { routeName } = useSelector(
@@ -94,7 +94,7 @@ const Main = () => {
         liff.getProfile().then(profile => {
             console.log(profile);
             setDisplayName(profile.pictureUrl);
-
+            setName(profile.displayName)
             dispatch(setUser({
                 lineID:profile.userId,
                 lineToken:idToken
@@ -167,7 +167,7 @@ const Main = () => {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', flex: 1 }}>
 
             <div style={{ flex: 1, backgroundColor: '#e9ecef' }}>
-            <img src={displayName}/>:{displayName}
+            <img src={displayName} style={{height:35,borderRadius:10}} />
             </div>
             <div style={{ textAlign: 'center', margin: 20, marginBottom: 5, flex: 20, flexDirection: 'column', display: 'flex' }}>
                 {/* <Request /> */}

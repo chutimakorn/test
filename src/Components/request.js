@@ -324,7 +324,7 @@ export default function Request() {
 
             </div>
             <div style={{ flexDirection: 'column', display: 'flex', flex: 3, fontSize: 17, border: 'thin solid', borderRadius: '10px', backgroundColor: '#6c757d26' }}>
-                Status : {requestFrom.Status == "W" ? "Waiting" : requestFrom.Status == "R" ? "Reject" : "No Request"}
+                Status : {requestFrom.Status === "W" ? "Waiting" : requestFrom.Status === "R" ? "Reject" : "No Request"}
             </div>
             <div style={{ flex: 1 }}>
                 {/* <div className="button-Search">

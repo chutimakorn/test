@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { CheckRequestStatus } from "../API/API_FUNC";
 import {
     setRoute,
-    setOwnRequest
+    setOwnRequest,
+    setUser
 } from "../Redux/Actions/route";
 
 
@@ -27,14 +28,80 @@ const Main = () => {
         (state) => state
     );
     const dispatch = useDispatch();
-    const initLine = async () => {
-        // liff.init({ liffId: '1656323976-B3v9pmvg' }, () => {
-        //     if (liff.isLoggedIn()) {
-        //         runApp();
+    const initLine = () => {
+        liff.init({ liffId: '1656323976-B3v9pmvg' }, () => {
+            if (liff.isLoggedIn()) {
+                runApp();
+            } else {
+                liff.login();
+            }
+        }, err => console.error(err));
+
+        // let response = await CheckRequestStatus('test');
+   
+        // if(response === null){
+        //     dispatch(setRoute("Request", "", ""));
+        // }else{
+        //     if (response.result !== null) {
+        //         console.log("request", response.result)
+        //         if (response.result.sR_Status === "A") {
+        //             dispatch(setRoute("Screen1", "", ""));
+        //             dispatch(
+        //                 setOwnRequest({
+        //                     email: response.result.sR_E_Mail,
+        //                     citizen: response.result.sR_Citizen,
+        //                     idNumber: response.result.sR_ID_Number,
+        //                     share: response.result.sR_Numofshare,
+        //                     name: response.result.sR_Name,
+        //                     surname: response.result.sR_Surname,
+        //                     mobile: response.result.sR_Mobile,
+        //                     status: response.result.sR_Status
+        //                 })
+        //             );
+        //             setShowMenu(true);
+        //         } else {
+        //             dispatch(setRoute("Request", "", ""));
+        //             dispatch(
+        //                 setOwnRequest({
+        //                     email: response.result.sR_E_Mail,
+        //                     citizen: response.result.sR_Citizen,
+        //                     idNumber: response.result.sR_ID_Number,
+        //                     share: response.result.sR_Numofshare,
+        //                     name: response.result.sR_Name,
+        //                     surname: response.result.sR_Surname,
+        //                     mobile: response.result.sR_Mobile,
+        //                     status: response.result.sR_Status
+        //                 })
+        //             );
+                    
+        //         }
+    
+    
         //     } else {
-        //         liff.login();
+                
+        //         dispatch(setRoute("Request", "", ""));
+    
         //     }
-        // }, err => console.error(err));
+        // }
+       
+
+    }
+
+    const runApp = async () => {
+        const idToken = liff.getIDToken();
+        setIdToken(idToken);
+
+        liff.getProfile().then(profile => {
+            console.log(profile);
+            setDisplayName(profile.displayName);
+
+            setUser({
+                lineID:profile.userId,
+                lineToken:idToken
+            });
+            
+
+        }).catch(err => console.error(err));
 
         let response = await CheckRequestStatus('test');
    
@@ -82,21 +149,7 @@ const Main = () => {
     
             }
         }
-       
-
     }
-
-    // const runApp = () => {
-    //     const idToken = liff.getIDToken();
-    //     setIdToken(idToken);
-
-    //     liff.getProfile().then(profile => {
-    //         console.log(profile);
-    //         setDisplayName(profile.displayName);
-
-
-    //     }).catch(err => console.error(err));
-    // }
 
 
     

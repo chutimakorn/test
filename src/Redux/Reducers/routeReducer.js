@@ -1,6 +1,7 @@
 import {
     SET_ROUTE,
-    SET_OWN_REQUEST
+    SET_OWN_REQUEST,
+    SET_USER
 } from "../Actions/types";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
         name: "",
         surname: "",
         mobile: "",
-        status: "No Request"
+        status: ""
     },
     auth: {
         lineID:"",
@@ -42,6 +43,15 @@ export const routeReducer = (state = initialState, action) => {
                     surname: action.payload.requestData.surname,
                     mobile: action.payload.requestData.mobile,
                     status: action.payload.requestData.status
+                }
+            };
+        }
+        case SET_USER: {
+            return {
+                ...state,
+                auth: {
+                    lineID:action.payload.authData.lineID,
+                    lineToken:action.payload.authData.lineToken
                 }
             };
         }
